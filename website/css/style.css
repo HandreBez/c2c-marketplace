@@ -1,0 +1,113 @@
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:#f4f6f9;
+}
+
+/* NAVBAR */
+
+nav{
+background:#1f2937;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.site-title{
+color:white;
+font-size:20px;
+font-weight:bold;
+}
+
+.nav-links a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.nav-links a:hover{
+color:#38bdf8;
+}
+
+/* CONTAINER */
+
+.container{
+width:1000px;
+margin:auto;
+background:white;
+padding:30px;
+margin-top:30px;
+border-radius:8px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* PRODUCTS */
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.product-card{
+border:1px solid #ddd;
+padding:15px;
+border-radius:6px;
+background:#fff;
+transition:0.2s;
+}
+
+.product-card:hover{
+transform:scale(1.03);
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+.product-card h3{
+margin:0 0 10px 0;
+}
+
+.product-card a{
+text-decoration:none;
+color:#111;
+}
+
+.product-card a:hover{
+color:#2563eb;
+}
+
+.price{
+color:#16a34a;
+font-weight:bold;
+margin-top:10px;
+}
+
+/* BUTTONS */
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+/* FORMS */
+
+input, textarea{
+width:100%;
+padding:8px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+form{
+max-width:400px;
+}

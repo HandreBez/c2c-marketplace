@@ -1,9 +1,9 @@
 <?php
-include "layout/header.php";
+session_start();
 
+$_SESSION = [];
 session_destroy();
 
-echo "You have been logged out";
-
-include "layout/footer.php";
+header("Location: login.php");
+exit;
 ?>

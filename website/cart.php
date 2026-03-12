@@ -1,7 +1,6 @@
 <?php
 include "layout/header.php";
 include "db.php";
-
 ?>
 
 <h2>Your Cart</h2>
@@ -9,8 +8,11 @@ include "db.php";
 <?php
 
 if(empty($_SESSION['cart'])){
-    echo "Cart is empty";
-} else {
+    echo "<p>Cart is empty</p>";
+} 
+else {
+
+$total = 0;
 
 foreach($_SESSION['cart'] as $product_id){
 
@@ -18,15 +20,25 @@ $sql = "SELECT * FROM products WHERE product_id=$product_id";
 $result = $conn->query($sql);
 $product = $result->fetch_assoc();
 
+echo "<div class='product-card'>";
 echo "<h3>".$product['title']."</h3>";
-echo "<p>Price: R".$product['price']."</p>";
-echo "<hr>";
+echo "<p class='price'>R".$product['price']."</p>";
+echo "</div>";
+
+$total += $product['price'];
 
 }
+
+echo "<h3>Total: R".$total."</h3>";
 
 }
 
 if(isset($_POST['checkout'])){
+
+if(!isset($_SESSION['user_id'])){
+echo "<p>You must login before checkout.</p>";
+} 
+else {
 
 $buyer_id = $_SESSION['user_id'];
 
@@ -41,7 +53,9 @@ $conn->query($sql);
 
 unset($_SESSION['cart']);
 
-echo "Order placed successfully";
+echo "<p>Order placed successfully!</p>";
+
+}
 
 }
 ?>

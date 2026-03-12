@@ -19,7 +19,8 @@ if(password_verify($password, $user['password'])){
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['name'] = $user['name'];
 
-echo "Login successful";
+header("Location: index.php");
+exit();
 
 } else {
 

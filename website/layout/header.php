@@ -5,41 +5,10 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>C2C Marketplace</title>
 
-<style>
-
-body{
-font-family: Arial;
-margin:0;
-background:#f4f4f4;
-}
-
-nav{
-background:#222;
-padding:15px;
-}
-
-nav a{
-color:white;
-margin-right:20px;
-text-decoration:none;
-font-weight:bold;
-}
-
-nav a:hover{
-color:#00bcd4;
-}
-
-.container{
-width:900px;
-margin:auto;
-background:white;
-padding:20px;
-margin-top:20px;
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -47,6 +16,9 @@ margin-top:20px;
 
 <nav>
 
+<span class="site-title">C2C Marketplace</span>
+
+<div class="nav-links">
 <a href="index.php">Home</a>
 <a href="browse.php">Browse</a>
 <a href="sell_item.php">Sell</a>
@@ -62,6 +34,8 @@ margin-top:20px;
 <a href="register.php">Register</a>
 
 <?php endif; ?>
+
+</div>
 
 </nav>
 
