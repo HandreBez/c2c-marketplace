@@ -1,0 +1,48 @@
+<?php
+include "db.php";
+?>
+
+<?php
+
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Browse Products</title>
+</head>
+
+<body>
+
+<h2>Marketplace</h2>
+
+<?php
+
+if($result->num_rows > 0){
+
+while($row = $result->fetch_assoc()){
+
+echo "<div>";
+
+echo "<h3>" . $row['title'] . "</h3>";
+echo "<p>" . $row['description'] . "</p>";
+echo "<p>Price: R" . $row['price'] . "</p>";
+
+echo "</div>";
+echo "<hr>";
+
+}
+
+} else {
+
+echo "No products available";
+
+}
+
+?>
+
+</body>
+</html>
