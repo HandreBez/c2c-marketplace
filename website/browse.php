@@ -27,7 +27,7 @@ while($row = $result->fetch_assoc()){
 
 echo "<div>";
 
-echo "<h3>" . $row['title'] . "</h3>";
+echo "<h3><a href='product.php?id=".$row['product_id']."'>" . $row['title'] . "</a></h3>";
 echo "<p>" . $row['description'] . "</p>";
 echo "<p>Price: R" . $row['price'] . "</p>";
 
