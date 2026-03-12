@@ -1,4 +1,5 @@
 <?php
+include "layout/header.php";
 include "db.php";
 
 if(isset($_POST['register'])){
@@ -19,18 +20,6 @@ if($conn->query($sql) === TRUE){
 }
 ?>
 
-<?php
-include "db.php";
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Register</title>
-</head>
-
-<body>
-
 <h2>Create Account</h2>
 
 <form method="POST">
@@ -48,5 +37,4 @@ Password:<br>
 
 </form>
 
-</body>
-</html>
+<?php include "layout/footer.php"; ?>

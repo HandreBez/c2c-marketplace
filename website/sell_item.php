@@ -1,14 +1,5 @@
 <?php
-include "db.php";
-session_start();
-
-if(!isset($_SESSION['user_id'])){
-    header("Location: login.php");
-    exit();
-}
-?>
-
-<?php
+include "layout/header.php";
 include "db.php";
 
 if(!isset($_SESSION['user_id'])){
@@ -35,14 +26,6 @@ if($conn->query($sql) === TRUE){
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Sell Item</title>
-</head>
-
-<body>
-
 <h2>Sell an Item</h2>
 
 <form method="POST">
@@ -60,5 +43,4 @@ Price:<br>
 
 </form>
 
-</body>
-</html>
+<?php include "layout/footer.php"; ?>

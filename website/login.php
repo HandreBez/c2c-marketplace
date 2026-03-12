@@ -1,6 +1,6 @@
 <?php
+include "layout/header.php";
 include "db.php";
-session_start();
 
 if(isset($_POST['login'])){
 
@@ -36,18 +36,6 @@ echo "User not found";
 }
 ?>
 
-<?php
-include "db.php";
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-</head>
-
-<body>
-
 <h2>Login</h2>
 
 <form method="POST">
@@ -62,5 +50,4 @@ Password:<br>
 
 </form>
 
-</body>
-</html>
+<?php include "layout/footer.php"; ?>

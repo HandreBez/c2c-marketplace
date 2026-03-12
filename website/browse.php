@@ -1,21 +1,10 @@
 <?php
+include "layout/header.php";
 include "db.php";
-?>
-
-<?php
 
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
-
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Browse Products</title>
-</head>
-
-<body>
 
 <h2>Marketplace</h2>
 
@@ -27,9 +16,9 @@ while($row = $result->fetch_assoc()){
 
 echo "<div>";
 
-echo "<h3><a href='product.php?id=".$row['product_id']."'>" . $row['title'] . "</a></h3>";
-echo "<p>" . $row['description'] . "</p>";
-echo "<p>Price: R" . $row['price'] . "</p>";
+echo "<h3><a href='product.php?id=".$row['product_id']."'>".$row['title']."</a></h3>";
+echo "<p>".$row['description']."</p>";
+echo "<p>Price: R".$row['price']."</p>";
 
 echo "</div>";
 echo "<hr>";
@@ -44,5 +33,4 @@ echo "No products available";
 
 ?>
 
-</body>
-</html>
+<?php include "layout/footer.php"; ?>
