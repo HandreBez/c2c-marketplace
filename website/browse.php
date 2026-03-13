@@ -1,15 +1,13 @@
-
 <?php
 include "layout/header.php";
 include "db.php";
 
-/* SEARCH */
 $search = "";
+
 if(isset($_GET['search'])){
-$search = $_GET['search'];
+$search = $conn->real_escape_string($_GET['search']);
 }
 
-/* FILTER */
 $where = [];
 
 if($search != ""){
@@ -17,8 +15,8 @@ $where[] = "products.title LIKE '%$search%'";
 }
 
 if(isset($_GET['category'])){
-$ids = implode(",", $_GET['category']);
-$where[] = "products.category_id IN ($ids)";
+$ids = array_map('intval', $_GET['category']);
+$where[] = "products.category_id IN (" . implode(",", $ids) . ")";
 }
 
 $where_sql = "";
@@ -26,8 +24,6 @@ $where_sql = "";
 if(!empty($where)){
 $where_sql = "WHERE " . implode(" AND ", $where);
 }
-
-/* PRODUCTS QUERY */
 
 $sql = "SELECT products.*, categories.category_name, users.name AS seller
 FROM products
@@ -37,7 +33,6 @@ $where_sql";
 
 $result = $conn->query($sql);
 
-/* GET CATEGORIES */
 $categories = $conn->query("SELECT * FROM categories");
 ?>
 
@@ -61,7 +56,6 @@ value="<?php echo htmlspecialchars($search); ?>">
 <h3>Filter by Category</h3>
 
 <?php
-$categories->data_seek(0);
 
 while($cat = $categories->fetch_assoc()){
 
@@ -96,8 +90,6 @@ if($result->num_rows > 0){
 while($row = $result->fetch_assoc()){
 
 echo "<div class='product-card'>";
-
-/* IMAGE */
 
 if($row['image']){
 echo "<img src='uploads/".$row['image']."' class='product-img'>";
@@ -138,4 +130,3 @@ echo "<div class='alert'>No products found.</div>";
 </div>
 
 <?php include "layout/footer.php"; ?>
-

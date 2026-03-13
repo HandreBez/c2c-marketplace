@@ -58,11 +58,15 @@ echo "<tr>";
 echo "<td>".$cat['category_id']."</td>";
 echo "<td>".$cat['category_name']."</td>";
 
-echo "<td>
-<a class='action-btn delete-btn'
-href='categories.php?delete=".$cat['category_id']."'
-onclick=\"return confirm('Delete this category?')\">Delete</a>
-</td>";
+echo "<td>";
+
+echo "<a class='action-btn delete-btn' 
+href='categories.php?delete=".$cat['category_id']."' 
+onclick=\"return confirmDelete('Delete this category?')\">
+Delete
+</a>";
+
+echo "</td>";
 
 echo "</tr>";
 
@@ -73,4 +77,6 @@ echo "</tr>";
 </table>
 
 <?php include "admin_footer.php"; ?>
+
+
 

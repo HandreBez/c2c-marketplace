@@ -5,19 +5,13 @@ include "admin_header.php";
 
 if(isset($_GET['delete'])){
 
-$id = $_GET['delete'];
-
-/* delete related orders */
+$id = (int)$_GET['delete'];
 
 $conn->query("DELETE FROM orders WHERE product_id = $id");
-
-/* delete product */
 
 $conn->query("DELETE FROM products WHERE product_id = $id");
 
 }
-
-/* GET PRODUCTS */
 
 $sql = "SELECT products.*, users.name AS seller, categories.category_name
 FROM products
@@ -35,6 +29,7 @@ $result = $conn->query($sql);
 
 <tr>
 <th>ID</th>
+<th>Image</th>
 <th>Title</th>
 <th>Seller</th>
 <th>Category</th>
@@ -51,6 +46,15 @@ while($product = $result->fetch_assoc()){
 echo "<tr>";
 
 echo "<td>".$product['product_id']."</td>";
+
+echo "<td>";
+
+if($product['image']){
+echo "<img src='../website/uploads/".$product['image']."' width='60'>";
+}
+
+echo "</td>";
+
 echo "<td>".$product['title']."</td>";
 echo "<td>".$product['seller']."</td>";
 echo "<td>".$product['category_name']."</td>";
@@ -61,7 +65,9 @@ echo "<td>".$product['created_at']."</td>";
 echo "<td>
 <a class='action-btn delete-btn'
 href='products.php?delete=".$product['product_id']."'
-onclick=\"return confirm('Delete this product?')\">Delete</a>
+onclick=\"return confirmDelete('Delete this product?')\">
+Delete
+</a>
 </td>";
 
 echo "</tr>";
@@ -73,4 +79,3 @@ echo "</tr>";
 </table>
 
 <?php include "admin_footer.php"; ?>
-

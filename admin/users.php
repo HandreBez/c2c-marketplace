@@ -5,21 +5,25 @@ include "admin_header.php";
 
 if(isset($_GET['delete'])){
 
-    $id = $_GET['delete'];
+$id = $_GET['delete'];
 
-    /* prevent deleting yourself */
-    if($id != $_SESSION['user_id']){
+/* prevent deleting yourself */
 
-        /* delete user's orders first */
-        $conn->query("DELETE FROM orders WHERE buyer_id = $id");
+if($id != $_SESSION['user_id']){
 
-        /* delete user's products */
-        $conn->query("DELETE FROM products WHERE seller_id = $id");
+/* delete user's orders */
 
-        /* now delete user */
-        $conn->query("DELETE FROM users WHERE user_id = $id");
+$conn->query("DELETE FROM orders WHERE buyer_id = $id");
 
-    }
+/* delete user's products */
+
+$conn->query("DELETE FROM products WHERE seller_id = $id");
+
+/* delete user */
+
+$conn->query("DELETE FROM users WHERE user_id = $id");
+
+}
 
 }
 
@@ -27,9 +31,9 @@ if(isset($_GET['delete'])){
 
 if(isset($_GET['promote'])){
 
-    $id = $_GET['promote'];
+$id = $_GET['promote'];
 
-    $conn->query("UPDATE users SET role='admin' WHERE user_id = $id");
+$conn->query("UPDATE users SET role='admin' WHERE user_id=$id");
 
 }
 
@@ -67,13 +71,26 @@ echo "<td>".$user['created_at']."</td>";
 echo "<td>";
 
 /* promote button */
+
 if($user['role'] != 'admin'){
-echo "<a class='action-btn' href='users.php?promote=".$user['user_id']."'>Promote</a> ";
+
+echo "<a class='action-btn' 
+href='users.php?promote=".$user['user_id']."'>
+Promote
+</a> ";
+
 }
 
 /* delete button */
+
 if($user['user_id'] != $_SESSION['user_id']){
-echo "<a class='action-btn delete-btn' href='users.php?delete=".$user['user_id']."' onclick=\"return confirm('Delete this user?')\">Delete</a>";
+
+echo "<a class='action-btn delete-btn'
+href='users.php?delete=".$user['user_id']."'
+onclick=\"return confirmDelete('Delete this user?')\">
+Delete
+</a>";
+
 }
 
 echo "</td>";

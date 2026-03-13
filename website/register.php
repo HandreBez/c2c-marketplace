@@ -4,23 +4,30 @@ include "db.php";
 
 if(isset($_POST['register'])){
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO users (name, email, password)
-VALUES ('$name','$email','$password')";
+$stmt = $conn->prepare("INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)");
 
-if($conn->query($sql) === TRUE){
-    echo "Account created successfully";
-} else {
-    echo "Error: " . $conn->error;
+$role = "user";
+
+$stmt->bind_param("ssss",$name,$email,$password,$role);
+
+if($stmt->execute()){
+
+echo "<p>Account created successfully.</p>";
+
+}else{
+
+echo "<p>Error creating account.</p>";
+
 }
 
 }
 ?>
 
-<h2>Create Account</h2>
+<h2>Register</h2>
 
 <form method="POST">
 

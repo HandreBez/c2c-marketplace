@@ -33,11 +33,9 @@ move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
 }
 
-/* INSERT PRODUCT */
-
-$sql = "INSERT INTO products 
+$sql = "INSERT INTO products
 (title, description, price, seller_id, category_id, stock, image)
-VALUES 
+VALUES
 ('$title','$description','$price','$seller_id','$category_id','$stock','$image_name')";
 
 if($conn->query($sql)){
@@ -78,11 +76,24 @@ echo "<option value='".$cat['category_id']."'>".$cat['category_name']."</option>
 <br><br>
 
 Product Image:<br>
-<input type="file" name="image" accept="image/*"><br><br>
+
+<input type="file"
+name="image"
+accept="image/*"
+onchange="previewImage(event)">
+
+<br><br>
+
+<img id="image-preview"
+style="max-width:200px;display:none;border-radius:6px;margin-top:10px;">
+
+<br><br>
 
 <button type="submit" name="sell">List Item</button>
 
 </form>
+
+<script src="js/main.js"></script>
 
 <?php include "layout/footer.php"; ?>
 

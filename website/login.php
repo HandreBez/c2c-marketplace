@@ -4,41 +4,42 @@ include "db.php";
 
 if(isset($_POST['login'])){
 
-$email = $_POST['email'];
+$email = trim($_POST['email']);
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE email='$email'";
-$result = $conn->query($sql);
+$stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+$stmt->bind_param("s",$email);
+$stmt->execute();
 
-if($result->num_rows > 0){
+$result = $stmt->get_result();
+
+if($result->num_rows === 1){
 
 $user = $result->fetch_assoc();
 
-if(password_verify($password, $user['password'])){
+if(password_verify($password,$user['password'])){
 
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['name'] = $user['name'];
 $_SESSION['role'] = $user['role'];
 
-/* SEND ADMIN TO DASHBOARD */
-
-if($user['role'] == 'admin'){
-    header("Location: ../admin/dashboard.php");
+if($user['role'] == "admin"){
+header("Location: ../admin/dashboard.php");
 } else {
-    header("Location: index.php");
+header("Location: index.php");
 }
 
 exit();
 
-} else {
+}else{
 
-echo "Incorrect password";
+$error = "Invalid email or password.";
 
 }
 
-} else {
+}else{
 
-echo "User not found";
+$error = "Invalid email or password.";
 
 }
 
@@ -46,6 +47,12 @@ echo "User not found";
 ?>
 
 <h2>Login</h2>
+
+<?php
+if(isset($error)){
+echo "<p style='color:red;'>$error</p>";
+}
+?>
 
 <form method="POST">
 
