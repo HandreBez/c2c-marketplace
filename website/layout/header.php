@@ -34,6 +34,10 @@ echo " (".count($_SESSION['cart']).")";
 
 <?php if(isset($_SESSION['user_id'])): ?>
 
+<?php if($_SESSION['role'] == 'admin'): ?>
+<a href="../admin/dashboard.php">Admin</a>
+<?php endif; ?>
+
 <a href="my_orders.php">My Orders</a>
 <a href="my_listings.php">My Listings</a>
 <a href="logout.php">Logout</a>

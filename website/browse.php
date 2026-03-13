@@ -1,3 +1,4 @@
+
 <?php
 include "layout/header.php";
 include "db.php";
@@ -55,8 +56,6 @@ value="<?php echo htmlspecialchars($search); ?>">
 
 <div class="marketplace">
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h3>Filter by Category</h3>
@@ -86,8 +85,6 @@ echo "</label>";
 
 </form>
 
-<!-- PRODUCTS -->
-
 <div class="products">
 
 <div class="product-grid">
@@ -99,6 +96,12 @@ if($result->num_rows > 0){
 while($row = $result->fetch_assoc()){
 
 echo "<div class='product-card'>";
+
+/* IMAGE */
+
+if($row['image']){
+echo "<img src='uploads/".$row['image']."' class='product-img'>";
+}
 
 echo "<h3><a href='product.php?id=".$row['product_id']."'>".$row['title']."</a></h3>";
 

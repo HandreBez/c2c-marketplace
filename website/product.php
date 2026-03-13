@@ -1,3 +1,4 @@
+
 <?php
 include "layout/header.php";
 include "db.php";
@@ -41,6 +42,20 @@ $_SESSION['cart'][$id] += $qty;
 echo "<div class='success'>Item added to cart!</div>";
 }
 ?>
+
+<div class="product-page">
+
+<div class="product-left">
+
+<?php
+if($product['image']){
+echo "<img src='uploads/".$product['image']."' class='product-img-large'>";
+}
+?>
+
+</div>
+
+<div class="product-right">
 
 <h2><?php echo $product['title']; ?></h2>
 
@@ -89,6 +104,10 @@ Add to Cart
 <?php
 }
 ?>
+
+</div>
+
+</div>
 
 <?php include "layout/footer.php"; ?>
 

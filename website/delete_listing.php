@@ -1,3 +1,4 @@
+```php
 <?php
 include "db.php";
 session_start();
@@ -14,10 +15,19 @@ exit("No product selected");
 $id = $_GET['id'];
 $user_id = $_SESSION['user_id'];
 
-$sql = "DELETE FROM products WHERE product_id = $id AND seller_id = $user_id";
+/* DELETE RELATED ORDERS FIRST */
+
+$conn->query("DELETE FROM orders WHERE product_id = $id");
+
+/* DELETE PRODUCT */
+
+$sql = "DELETE FROM products
+WHERE product_id = $id
+AND seller_id = $user_id";
 
 $conn->query($sql);
 
 header("Location: my_listings.php");
 exit();
 ?>
+```

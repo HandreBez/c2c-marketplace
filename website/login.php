@@ -18,8 +18,16 @@ if(password_verify($password, $user['password'])){
 
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['name'] = $user['name'];
+$_SESSION['role'] = $user['role'];
 
-header("Location: index.php");
+/* SEND ADMIN TO DASHBOARD */
+
+if($user['role'] == 'admin'){
+    header("Location: ../admin/dashboard.php");
+} else {
+    header("Location: index.php");
+}
+
 exit();
 
 } else {
