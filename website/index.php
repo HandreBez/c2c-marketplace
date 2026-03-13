@@ -1,8 +1,16 @@
+
 <?php include "layout/header.php"; ?>
 
 <h1>Welcome to the C2C Marketplace</h1>
 
-<p>Buy and sell items directly with other users. Browse listings or post your own items for sale.</p>
+<p>
+Buy and sell items directly with other users.  
+Browse the marketplace or list your own products for sale.
+</p>
+
+<a href="browse.php">
+<button>Browse Marketplace</button>
+</a>
 
 <h2>Latest Listings</h2>
 
@@ -23,7 +31,7 @@ echo "<div class='product-card'>";
 
 echo "<h3><a href='product.php?id=".$row['product_id']."'>".$row['title']."</a></h3>";
 
-echo "<p>".$row['description']."</p>";
+echo "<p>".substr($row['description'],0,60)."...</p>";
 
 echo "<p class='price'>R".$row['price']."</p>";
 
@@ -36,3 +44,4 @@ echo "</div>";
 </div>
 
 <?php include "layout/footer.php"; ?>
+

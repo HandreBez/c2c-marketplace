@@ -19,13 +19,23 @@ session_start();
 <span class="site-title">C2C Marketplace</span>
 
 <div class="nav-links">
+
 <a href="index.php">Home</a>
 <a href="browse.php">Browse</a>
 <a href="sell_item.php">Sell</a>
-<a href="cart.php">Cart</a>
+
+<a href="cart.php">Cart
+<?php
+if(isset($_SESSION['cart'])){
+echo " (".count($_SESSION['cart']).")";
+}
+?>
+</a>
 
 <?php if(isset($_SESSION['user_id'])): ?>
 
+<a href="my_orders.php">My Orders</a>
+<a href="my_listings.php">My Listings</a>
 <a href="logout.php">Logout</a>
 
 <?php else: ?>
@@ -40,3 +50,4 @@ session_start();
 </nav>
 
 <div class="container">
+

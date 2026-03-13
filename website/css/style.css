@@ -34,7 +34,7 @@ color:#38bdf8;
 /* CONTAINER */
 
 .container{
-width:1000px;
+width:1200px;
 margin:auto;
 background:white;
 padding:30px;
@@ -43,25 +43,78 @@ border-radius:8px;
 box-shadow:0 3px 8px rgba(0,0,0,0.1);
 }
 
+/* SEARCH */
+
+.search-bar{
+display:flex;
+gap:10px;
+margin-bottom:25px;
+}
+
+.search-bar input{
+flex:1;
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+/* MARKET LAYOUT */
+
+.marketplace{
+display:flex;
+align-items:flex-start;
+gap:40px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:250px;
+border-right:1px solid #eee;
+padding-right:20px;
+}
+
+/* FILTER */
+
+.filter-item{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:12px;
+}
+
+.filter-btn{
+margin-top:10px;
+width:100%;
+}
+
 /* PRODUCTS */
+
+.products{
+flex:1;
+}
+
+/* GRID */
 
 .product-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px;
+gap:25px;
 }
+
+/* PRODUCT CARD */
 
 .product-card{
 border:1px solid #ddd;
-padding:15px;
-border-radius:6px;
+padding:18px;
+border-radius:8px;
 background:#fff;
 transition:0.2s;
 }
 
 .product-card:hover{
-transform:scale(1.03);
-box-shadow:0 5px 12px rgba(0,0,0,0.15);
+transform:translateY(-4px);
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
 }
 
 .product-card h3{
@@ -73,14 +126,15 @@ text-decoration:none;
 color:#111;
 }
 
-.product-card a:hover{
-color:#2563eb;
+.category{
+font-size:13px;
+color:#666;
 }
 
 .price{
 color:#16a34a;
 font-weight:bold;
-margin-top:10px;
+margin-top:8px;
 }
 
 /* BUTTONS */
@@ -98,16 +152,63 @@ button:hover{
 background:#1d4ed8;
 }
 
-/* FORMS */
+/* SELLER */
 
-input, textarea{
-width:100%;
-padding:8px;
-margin-top:5px;
-border:1px solid #ccc;
-border-radius:4px;
+.seller{
+font-size:13px;
+color:#555;
+margin-bottom:5px;
 }
 
-form{
-max-width:400px;
+/* ALERTS */
+
+.alert{
+background:#fff3cd;
+color:#856404;
+padding:10px;
+border-radius:6px;
+margin-bottom:20px;
+}
+
+.success{
+background:#d4edda;
+color:#155724;
+padding:10px;
+border-radius:6px;
+margin-bottom:20px;
+}
+
+/* CART TABLE */
+
+.cart-table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+.cart-table th,
+.cart-table td{
+border-bottom:1px solid #ddd;
+padding:12px;
+text-align:left;
+}
+
+.cart-table th{
+background:#f3f4f6;
+font-weight:bold;
+}
+
+.cart-table input{
+width:60px;
+padding:5px;
+}
+
+.remove-btn{
+color:#dc2626;
+text-decoration:none;
+font-weight:bold;
+}
+
+.remove-btn:hover{
+text-decoration:underline;
 }
